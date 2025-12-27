@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <!-- Header -->
+   
     <header class="header">
         <div class="logo">
             <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -36,9 +36,9 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    
     <div class="container">
-        <!-- Current Weather Hero -->
+       
         <section class="current-weather glass-card">
             <div class="location-info">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -51,7 +51,7 @@
 
             <div class="weather-main">
                 <svg class="weather-icon-large" id="currentWeatherIcon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
-                    <!-- Placeholder sun icon -->
+                    
                     <circle cx="50" cy="50" r="20" fill="currentColor"/>
                     <line x1="50" y1="10" x2="50" y2="20" stroke-width="3"/>
                     <line x1="50" y1="80" x2="50" y2="90" stroke-width="3"/>
@@ -85,7 +85,7 @@
             </div>
         </section>
 
-        <!-- Hourly Forecast -->
+        
         <section class="hourly-forecast glass-card">
             <h2 class="section-title">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,7 +95,7 @@
                 Hourly Forecast
             </h2>
             <div class="hourly-scroll" id="hourlyForecast">
-                <!-- Hourly items will be inserted here by JS -->
+               
                 <div class="hourly-item">
                     <div class="hourly-time">Now</div>
                     <svg class="hourly-icon" viewBox="0 0 50 50" fill="currentColor">
@@ -107,7 +107,7 @@
             </div>
         </section>
 
-        <!-- 7-Day Forecast -->
+        
         <section class="weekly-forecast glass-card">
             <h2 class="section-title">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -116,10 +116,10 @@
                     <line x1="8" y1="2" x2="8" y2="6"/>
                     <line x1="3" y1="10" x2="21" y2="10"/>
                 </svg>
-                7-Day Forecast
+                3-Day Forecast
             </h2>
             <div class="weekly-grid" id="weeklyForecast">
-                <!-- Daily items will be inserted here by JS -->
+                
                 <div class="daily-item">
                     <div class="day-name">Monday</div>
                     <div class="day-date">Jan 1</div>
@@ -135,7 +135,7 @@
             </div>
         </section>
 
-        <!-- Weather Details -->
+       
         <section class="weather-details glass-card">
             <h2 class="section-title">Weather Details</h2>
             <div class="details-grid">
@@ -265,7 +265,7 @@
                     Weather Alerts
                 </h2>
                 <div id="alertsContainer">
-                    <!-- Alert cards will be inserted here by JS -->
+                   
                 </div>
             </div>
         </section>
@@ -273,7 +273,7 @@
         
     </div>
 
-    <!-- Footer -->
+   
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -319,5 +319,6 @@
         </div>
     </footer>
 </body>
+<script src="config.js"></script>
 <script src="index.js"></script>
 </html>

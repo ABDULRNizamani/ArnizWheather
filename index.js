@@ -71,7 +71,7 @@
 
 
 
-        const apiKey = "96cb902527be49ed8cc145139251510"
+        const apiKey = CONFIG.WEATHER_API_KEY;
 
         elements.citySearch.addEventListener("keypress", function(e){
             console.log("keyPressed", e.key)
@@ -86,27 +86,37 @@
 
 
 
+// Default city
+const DEFAULT_CITY = 'London';
+
+// Fetch weather for default city on page load
+window.addEventListener('DOMContentLoaded', () => {
+    getWeather(DEFAULT_CITY);
+});
 
 async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=yes&alerts=yes`;
     
     try {
         const response = await fetch(url);
-        const data = await response.json();
-        console.log(data)
-        updateUI(data);
-
+        
         if (!response.ok) {
             const errorData = await response.json();
-            console.error('API Error:', errorData);  
+            console.error('API Error:', errorData);
+            
             return;
         }
-       
+        
+        const data = await response.json();
+        console.log(data);
+        updateUI(data);
         
     } catch (error) {
         console.error('Error fetching weather:', error);
+       
     }
 }
+
 
 
 
@@ -115,6 +125,7 @@ async function getWeather(city) {
      elements.locationName.textContent = data.location.name;
      elements.currentDateTime.textContent = data.location.localtime;
     
+     console.log('Forecast days received:', data.forecast.forecastday.length);
      // Current Weather
      elements.currentTemp.textContent = `${Math.round(data.current.temp_c)}°`;
      elements.weatherCondition.textContent = data.current.condition.text;
@@ -146,8 +157,7 @@ async function getWeather(city) {
 
    
 function formatTime(timeStr) {
-    // Input: "2025-10-15 14:00"
-    // Output: "2:00 PM"
+    
     
     const timePart = timeStr.split(' ')[1];  
     let hour = parseInt(timePart.split(':')[0]); 
@@ -192,7 +202,7 @@ function updateHourlyForecast(forecastData, localtime) {
 
         let time = document.createElement("div");
         time.className = "hourly-time";
-        time.textContent = formatTime(element.time);  // ✅ Use formatTime helper!
+        time.textContent = formatTime(element.time); 
 
         let ic = document.createElement("img");
         ic.className = "hourly-icon";

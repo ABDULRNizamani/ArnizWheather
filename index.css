@@ -1,11 +1,11 @@
-* {
+       * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            /* Light Mode Colors */
+            
             --bg-gradient-start: #667eea;
             --bg-gradient-end: #764ba2;
             --card-bg: rgba(255, 255, 255, 0.15);
@@ -42,7 +42,7 @@
             transition: background 0.3s ease;
         }
 
-        /* Header */
+        
         .header {
             display: flex;
             justify-content: space-between;
@@ -153,14 +153,14 @@
             transition: all 0.3s ease;
         }
 
-        /* Main Container */
+        
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Glass Card Effect */
+       
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -175,7 +175,7 @@
             transform: translateY(-2px);
         }
 
-        /* Current Weather Hero */
+       
         .current-weather {
             text-align: center;
             margin-bottom: 2rem;
@@ -391,7 +391,7 @@
             margin-top: 0.5rem;
         }
 
-        /* Weather Details Grid */
+        
         .weather-details {
             margin-bottom: 2rem;
         }
@@ -440,7 +440,7 @@
             margin-top: 0.5rem;
         }
 
-        /* Weather Map */
+        
         .weather-map-section {
             margin-bottom: 2rem;
         }
@@ -532,7 +532,7 @@
             margin-top: 0.5rem;
         }
 
-        /* Footer */
+       
         .footer {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -581,7 +581,7 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Design */
+       
         @media (max-width: 768px) {
     .header {
         flex-wrap: wrap;
@@ -619,7 +619,7 @@
         display: none !important;
     }
     
-    /* ... keep all other mobile styles ... */
+   
 }
             .header-controls {
                 gap: 0.5rem;
