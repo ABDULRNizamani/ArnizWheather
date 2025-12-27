@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+            </svg>
+            <span>WeatherNow</span>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+            <input type="text" class="search-input" id="citySearch" placeholder="Search for city or location...">
+            <button class="location-btn" id="getLocation" title="Use my location">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="header-controls">
+            <button class="toggle-btn" id="themeToggle">🌙 Dark</button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Current Weather Hero -->
+        <section class="current-weather glass-card">
+            <div class="location-info">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span id="locationName">Loading...</span>
+            </div>
+            <div class="datetime" id="currentDateTime">Loading...</div>
+
+            <div class="weather-main">
+                <svg class="weather-icon-large" id="currentWeatherIcon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                    <!-- Placeholder sun icon -->
+                    <circle cx="50" cy="50" r="20" fill="currentColor"/>
+                    <line x1="50" y1="10" x2="50" y2="20" stroke-width="3"/>
+                    <line x1="50" y1="80" x2="50" y2="90" stroke-width="3"/>
+                    <line x1="10" y1="50" x2="20" y2="50" stroke-width="3"/>
+                    <line x1="80" y1="50" x2="90" y2="50" stroke-width="3"/>
+                    <line x1="20" y1="20" x2="27" y2="27" stroke-width="3"/>
+                    <line x1="73" y1="73" x2="80" y2="80" stroke-width="3"/>
+                    <line x1="20" y1="80" x2="27" y2="73" stroke-width="3"/>
+                    <line x1="73" y1="27" x2="80" y2="20" stroke-width="3"/>
+                </svg>
+
+                <div class="temperature-display">
+                    <div class="current-temp" id="currentTemp">--°</div>
+                    <div class="weather-condition" id="weatherCondition">Loading...</div>
+                </div>
+            </div>
+
+            <div class="temp-details">
+                <div class="temp-detail-item">
+                    <span class="temp-detail-label">Feels Like</span>
+                    <span class="temp-detail-value" id="feelsLike">--°</span>
+                </div>
+                <div class="temp-detail-item">
+                    <span class="temp-detail-label">High</span>
+                    <span class="temp-detail-value" id="tempHigh">--°</span>
+                </div>
+                <div class="temp-detail-item">
+                    <span class="temp-detail-label">Low</span>
+                    <span class="temp-detail-value" id="tempLow">--°</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hourly Forecast -->
+        <section class="hourly-forecast glass-card">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Hourly Forecast
+            </h2>
+            <div class="hourly-scroll" id="hourlyForecast">
+                <!-- Hourly items will be inserted here by JS -->
+                <div class="hourly-item">
+                    <div class="hourly-time">Now</div>
+                    <svg class="hourly-icon" viewBox="0 0 50 50" fill="currentColor">
+                        <circle cx="25" cy="25" r="10"/>
+                    </svg>
+                    <div class="hourly-temp">--°</div>
+                    <div class="hourly-precip">--% </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7-Day Forecast -->
+        <section class="weekly-forecast glass-card">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                7-Day Forecast
+            </h2>
+            <div class="weekly-grid" id="weeklyForecast">
+                <!-- Daily items will be inserted here by JS -->
+                <div class="daily-item">
+                    <div class="day-name">Monday</div>
+                    <div class="day-date">Jan 1</div>
+                    <svg class="day-icon" viewBox="0 0 60 60" fill="currentColor">
+                        <circle cx="30" cy="30" r="12"/>
+                    </svg>
+                    <div class="day-temps">
+                        <span class="temp-high">--°</span>
+                        <span class="temp-low">--°</span>
+                    </div>
+                    <div class="day-summary">--</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Details -->
+        <section class="weather-details glass-card">
+            <h2 class="section-title">Weather Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
+                        </svg>
+                        Humidity
+                    </div>
+                    <div class="detail-value" id="humidity">--%</div>
+                    <div class="detail-subtext" id="humidityText">--</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/>
+                        </svg>
+                        Wind Speed
+                    </div>
+                    <div class="detail-value" id="windSpeed">-- km/h</div>
+                    <div class="detail-subtext" id="windDirection">From --</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="4"/>
+                            <line x1="12" y1="2" x2="12" y2="4"/>
+                            <line x1="12" y1="20" x2="12" y2="22"/>
+                        </svg>
+                        UV Index
+                    </div>
+                    <div class="detail-value" id="uvIndex">--</div>
+                    <div class="detail-subtext" id="uvText">--</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41"/>
+                        </svg>
+                        Pressure
+                    </div>
+                    <div class="detail-value" id="pressure">-- hPa</div>
+                    <div class="detail-subtext" id="pressureText">--</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        Visibility
+                    </div>
+                    <div class="detail-value" id="visibility">-- km</div>
+                    <div class="detail-subtext" id="visibilityText">--</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 18a5 5 0 00-10 0"/>
+                            <line x1="12" y1="2" x2="12" y2="9"/>
+                            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+                            <line x1="1" y1="18" x2="3" y2="18"/>
+                            <line x1="21" y1="18" x2="23" y2="18"/>
+                            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+                            <line x1="23" y1="22" x2="1" y2="22"/>
+                        </svg>
+                        Sunrise
+                    </div>
+                    <div class="detail-value" id="sunrise">--:--</div>
+                    <div class="detail-subtext">Sunset: <span id="sunset">--:--</span></div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                        </svg>
+                        Moon Phase
+                    </div>
+                    <div class="detail-value" id="moonPhase">--</div>
+                    <div class="detail-subtext" id="moonPhaseText">--</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>
+                            <path d="M12 2v10"/>
+                        </svg>
+                        Precipitation
+                    </div>
+                    <div class="detail-value" id="precipitation">--%</div>
+                    <div class="detail-subtext" id="precipAmount">-- mm</div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-label">
+                        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 12h8"/>
+                            <path d="M12 8v8"/>
+                        </svg>
+                        Air Quality
+                    </div>
+                    <div class="detail-value" id="airQuality">--</div>
+                    <div class="detail-subtext" id="aqiText">--</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Alerts -->
+        <section class="alerts-section" id="alertsSection" style="display: none;">
+            <div class="glass-card">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Weather Alerts
+                </h2>
+                <div id="alertsContainer">
+                    <!-- Alert cards will be inserted here by JS -->
+                </div>
+            </div>
+        </section>
+
+        
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="aboutLink">About Us</a></li>
+                    <li><a href="#" id="howItWorksLink">How It Works</a></li>
+                    <li><a href="#" id="dataSourcesLink">Data Sources</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="weatherAlertsLink">Weather Alerts</a></li>
+                    <li><a href="#" id="forecastAccuracyLink">Forecast Accuracy</a></li>
+                    <li><a href="#" id="moreDataLink">More Weather Data</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="privacyLink">Privacy Policy</a></li>
+                    <li><a href="#" id="termsLink">Terms of Service</a></li>
+                    <li><a href="#" id="cookiesLink">Cookie Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="contactLink">Contact Us</a></li>
+                    <li><a href="#" id="feedbackLink">Send Feedback</a></li>
+                    <li><a href="#" id="supportLink">Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Weather data provided by OpenWeatherMap API</p>
+            <p>&copy; 2025 WeatherNow. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+<script src="index.js"></script>
+</html>
